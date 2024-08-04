@@ -1,0 +1,4 @@
+[build]
+  base    = "appweb"
+  publish = "appweb/build"
+  command = "npm run build"
