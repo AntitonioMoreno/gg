@@ -1,7 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Footer from "../components/misc/Footer";
-import { Link } from 'react-router-dom';
 import UserLoggedNavbar from '../components/navbars/UserLoggedNavbar';
 import { LineGraph } from '../components/misc/Graph';
 

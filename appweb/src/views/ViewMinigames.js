@@ -2,7 +2,6 @@ import React from 'react';
 import MainNavbar from "../components/navbars/MainNavbar";
 import openWindow from '../scripts/misc/redirectWindow'; 
 import HelloWorld from './helloWorld'; 
-import Footer from '../components/misc/Footer';
 // Minijuegos
 import Roulette from './minigames/roulette';
 import BlackJack from './minigames/blackjack';
