@@ -1,4 +1,3 @@
-import { Colors } from "chart.js";
 
 export const Data = {
     labels: [

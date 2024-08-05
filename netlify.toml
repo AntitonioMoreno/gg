@@ -1,4 +1,6 @@
 [build]
-  base    = "appweb"
-  publish = "appweb/build"
-  command = "npm run build"
+  base: /opt/build/repo/appweb
+  command: npm run build
+  commandOrigin: config
+  publish: /opt/build/repo/appweb/appweb/build
+  publishOrigin config

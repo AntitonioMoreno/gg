@@ -8,8 +8,6 @@ import {
     Title,
     Tooltip,
     Legend,
-    plugins,
-    Ticks,
 } from 'chart.js';
 import { Data } from './Data';
 

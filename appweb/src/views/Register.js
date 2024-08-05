@@ -47,7 +47,7 @@ const Register = () => {
                 <div className='header-register'>
                     <h1>Registrate!</h1>
                     <div className='gg-img'>
-                        <img src='/images/logos/logoGG.png' width={100}></img>
+                        <img src='/images/logos/logoGG.png' width={100} alt='logo'></img>
                     </div>
                 </div>
                 <div className='inputs-item'>
@@ -88,7 +88,7 @@ const Register = () => {
                         <h4>iniciar sesion</h4>
                     </div>
                     <button onClick={handleSubmit}>crear cuenta</button>
-                    <a href='#'>info</a>
+                    <a href='/main'>info</a>
                 </div>
             </section>
         </main>

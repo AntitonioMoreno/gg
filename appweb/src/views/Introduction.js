@@ -4,7 +4,7 @@ export const Introduction = () => {
     return(
         <section className='introduction'>
             <div className='img-introduction'>
-                <img src='/images/IntroductionImgS.jpg'></img>
+                <img src='/images/IntroductionImgS.jpg' alt="introductionIMG"></img>
             </div>
             <div className='introduction-title'>
                 <h1>Introduccion</h1>

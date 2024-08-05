@@ -46,11 +46,11 @@ export const GgInformation = () => {
     const nextSection = () => {
         showSection(currentIndex + 1);
     };
-
+/*
     const prevSection = () => {
         showSection(currentIndex - 1);
     };
-
+*/
     const offset = -currentIndex * 100;
 
     return (

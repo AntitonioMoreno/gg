@@ -2,7 +2,7 @@ export const Services = () => {
     return (
         <section className="services">
             <div className="services-image">
-                <img src="images/imgServices.jpg" />
+                <img src="images/imgServices.jpg" alt="services"/>
             </div>
             <div className="services-tittle">
                 <h1>Nuestros servicios</h1>

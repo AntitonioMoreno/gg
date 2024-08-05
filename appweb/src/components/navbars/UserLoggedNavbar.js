@@ -24,7 +24,7 @@ const UserLoggedNavbar = () => {
 
     return(
         <nav>
-            <img className='main-logo' src="/images/logos/logo_min.png" draggable='false'/>
+            <img className='main-logo' src="/images/logos/logo_min.png" draggable='false' alt="logo"/>
             <Link to="/profile" >Inicio</Link>
             <Link to="/minigames" >Minijuegos</Link>
             <i class='bx bxs-user-circle user-icon' onClick={handleProfileClick}></i>

@@ -10,7 +10,6 @@ import { accountCollection } from '../model/collections';
 const Login = () => {
     const [account, setAccount] = useState({ ...accountCollection });
     const navigate = useNavigate();
-    const amount = 100;
 
     const handleChangeAccount = (e) => {
         const { name, value } = e.target;
@@ -36,7 +35,7 @@ const Login = () => {
             <section className='main-box'>
                 <div className='header'>
                     <h1>Login</h1>
-                    <img src='/images/logos/logoGG.png' width={100}></img>
+                    <img src='/images/logos/logoGG.png' width={100} alt='logo'></img>
                 </div>
                 <div className='item1'>
                     <h3>usuario</h3>
