@@ -1,6 +1,6 @@
 [build]
-  base: /opt/build/repo/appweb
-  command: npm run build
-  commandOrigin: config
-  publish: /opt/build/repo/appweb/appweb/build
-  publishOrigin config
+  base = "/opt/build/repo/appweb"
+  command = "npm run build"
+  commandOrigin = "config"
+  publish = "/opt/build/repo/appweb/appweb/build"
+  publishOrigin = "config"
