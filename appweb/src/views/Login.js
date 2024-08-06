@@ -19,7 +19,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-                const response = await axios.post('http://localhost:5000/api/accounts/login', { ...account }, { withCredentials: true });
+                const response = await axios.post('https://good-guys.netlify.app/.netlify/functions/login', { ...account }, { withCredentials: true });
                 alert('sesion iniciada con exito');
                 navigate(response.data.redirectURL);
     

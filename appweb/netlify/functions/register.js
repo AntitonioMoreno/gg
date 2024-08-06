@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const Account = require('../../../models/account'); // Asegúrate de usar la ruta correcta
+const Account = require('../../models/account'); // Asegúrate de usar la ruta correcta
 
 const uri = 'mongodb+srv://GGadmin:ZarzMAK2znmsnTyA@casino.owknlio.mongodb.net/casinoWeb'; // Reemplaza con tu cadena de conexión de MongoDB
 
