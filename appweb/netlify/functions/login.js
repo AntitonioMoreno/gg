@@ -4,7 +4,7 @@ const accounts = require('../../models/account');
 
 const uri = 'mongodb+srv://GGadmin:ZarzMAK2znmsnTyA@casino.owknlio.mongodb.net/casinoWeb';
 
-exports.login = async (event, context) => {
+exports.handler = async (event, context) => {
     try {
         await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
         const { user, password } = JSON.parse(event.body);
