@@ -6,7 +6,7 @@ const Account = require('../../../models/account'); // Asegúrate de usar la rut
 
 const uri = 'mongodb+srv://GGadmin:ZarzMAK2znmsnTyA@casino.owknlio.mongodb.net/casinoWeb'; // Reemplaza con tu cadena de conexión de MongoDB
 
-exports.register = async (event, context) => {
+exports.handler = async (event, context) => {
   try {
     await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
