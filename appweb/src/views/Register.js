@@ -31,7 +31,7 @@ const Register = () => {
                 alert('no se ha confirmado la contraseña!');
             }
             else {
-                await axios.post('https://good-guys.netlify.app/.netlify/functions/register.js', { ...account });
+                await axios.post('https://good-guys.netlify.app/.netlify/functions/helloWorld', { ...account });
                 alert('cuenta agregada exitosamente');
                 setAccount({ ...account });
                 navigate('/login');
