@@ -36,7 +36,7 @@ exports.register = async (event, context) => {
     return {
       statusCode: 200,
       headers: {
-        'Access-Control-Allow-Origin': 'https://good-guys.netlify.app', // o especifica tu dominio
+        'Access-Control-Allow-Origin': '*', // o especifica tu dominio
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST'
       },
