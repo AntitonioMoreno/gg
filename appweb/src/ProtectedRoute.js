@@ -9,7 +9,7 @@ const ProtectedRoute = ({ component: Component, redirectTo,  ...rest }) => {
         const checkAuth = async () => {
             try {
                 const response = await fetch('https://good-guys.netlify.app/.netlify/functions/Auth', {
-                    method: 'POST', // or 'GET' if your function is designed to handle GET requests
+                    method: 'GET', // or 'GET' if your function is designed to handle GET requests
                     credentials: 'include', // ensures cookies are included in the request
                     headers: {
                         'Content-Type': 'application/json', // if you are sending JSON data
