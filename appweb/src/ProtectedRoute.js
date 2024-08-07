@@ -8,7 +8,7 @@ const ProtectedRoute = ({ component: Component, redirectTo,  ...rest }) => {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/accounts/Authentication', {
+                const response = await fetch('https://good-guys.netlify.app/.netlify/functions/Auth', {
                     credentials: 'include'
                 });
 
