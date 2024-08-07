@@ -26,7 +26,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route
           path="/profile"
-          element={<ProtectedRoute component={HomeUser} redirectTo={'/login'}/>} />
+          element={<HomeUser />} />
         <Route path="*" element={<NotFound />} />
         <Route path='/Wallet' element={<Wallet />} />
         <Route path='/graph' element={<LineGraph />} />
