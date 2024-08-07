@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const accounts = require('../../models/account');
+const { createToken } = require('./JWT'); // Assuming you use jwt to create tokens
 
 const uri = 'mongodb+srv://GGadmin:ZarzMAK2znmsnTyA@casino.owknlio.mongodb.net/casinoWeb';
 
 exports.handler = async (event, context) => {
+    context.callbackWaitsForEmptyEventLoop = false;
+    
     try {
         await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
         const { user, password } = JSON.parse(event.body);
@@ -19,6 +22,7 @@ exports.handler = async (event, context) => {
         const account = await accounts.findOne({ user: user });
 
         if (!account) {
+            await mongoose.disconnect();
             return {
                 statusCode: 400,
                 body: JSON.stringify({ error: 'no se encontro al usuario' }),
@@ -27,23 +31,25 @@ exports.handler = async (event, context) => {
 
         const bdPassword = account.password;
 
-        bcrypt.compare(password, bdPassword).then((match) => {
+        const match = await bcrypt.compare(password, bdPassword);
             if (!match) {
+                await mongoose.disconnect();
                 return {
                     statusCode: 400,
                     body: JSON.stringify({ error: 'usuario y/o contraseña incorrectos' }),
                 };
             } else {
                 const accessToken = createToken(account);
-                res.cookie('access-token', accessToken, {
-                    httpOnly: true,
-                    maxAge: 86400000,
-                    //path: '/profile',
-                });
-                //const setCookieHeader = res.getHeader('Set-Cookie');
-                res.json({ redirectURL: '/profile' });
+                await mongoose.disconnect();
+                
+                return {
+                    statusCode: 200,
+                    headers: {
+                        'Set-Cookie' : `access-token=${accessToken}; HttpOnly; Max-Age=86400`,
+                    },
+                    body: JSON.stringify({ redirectURL: '/profile' }),
+                };
             }
-        });
 
     } catch (error) {
         console.error(error);
