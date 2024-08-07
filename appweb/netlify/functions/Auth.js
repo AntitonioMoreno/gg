@@ -5,8 +5,13 @@ exports.handler = async (event, context) => {
 
     try {
         // Assuming the token is passed in the headers or in the event body
-        const token = event.headers.authorization || JSON.parse(event.body).token;
-        
+        const token = event.headers.cookie
+        const accessToken = cookies
+            .split(';')
+            .find(cookie => cookie.trim().startsWith('acess-token='))
+            .split('=')[1];
+
+
         if (!token) {
             return {
                 statusCode: 401,
@@ -14,9 +19,9 @@ exports.handler = async (event, context) => {
             };
         }
 
-        const response = await validateToken(token); // Assuming validateToken is a promise
+        const isValid = await validateToken(accessToken); // Assuming validateToken is a promise
 
-        if (response) {
+        if (isValid) {
             return {
                 statusCode: 200,
                 body: JSON.stringify({ message: "Authentication complete" }),
