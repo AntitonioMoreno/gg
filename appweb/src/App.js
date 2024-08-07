@@ -5,7 +5,6 @@ import Login from './views/Login';
 import Register from './views/Register';
 import NotFound from './views/Home';
 import HomeUser from './views/HomeUser';
-import ProtectedRoute from './ProtectedRoute';
 import SurveyProtected from './surveyProtected';
 import Wallet from './views/Wallet';
 import { LineGraph } from './components/misc/Graph';
