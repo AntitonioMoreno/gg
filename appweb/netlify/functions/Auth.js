@@ -1,6 +1,6 @@
 const { validateToken } = require('./JWT');
 
-exports.checkAuth = async (event, context) => {
+exports.handler = async (event, context) => {
     context.callbackWaitsForEmptyEventLoop = false;
 
     try {
