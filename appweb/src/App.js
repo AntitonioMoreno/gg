@@ -17,7 +17,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/main" element={<ProtectedRoute component={HomeUser} redirectTo={'/'}/>} />
+        <Route path="/main" element={<HomeUser />} />
         <Route
           path="/minigames"
           element={<SurveyProtected component={HomeUser} />}
