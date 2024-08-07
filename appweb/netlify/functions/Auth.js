@@ -5,7 +5,8 @@ exports.handler = async (event, context) => {
 
     try {
         // Assuming the token is passed in the headers or in the event body
-        const token = event.headers.cookie
+        const token = event.headers.cookie;
+        console.log('the token: ', token);
         const accessToken = cookies
             .split(';')
             .find(cookie => cookie.trim().startsWith('acess-token='))
