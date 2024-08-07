@@ -14,9 +14,6 @@ const ProtectedRoute = ({ component: Component, redirectTo,  ...rest }) => {
                     headers: {
                         'Content-Type': 'application/json', // if you are sending JSON data
                     },
-                    body: JSON.stringify({
-                        // include any necessary data in the body
-                    })
                 });
                 
 
