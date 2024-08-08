@@ -10,7 +10,7 @@ const Profile = ({ className }) => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/accounts/profile', { withCredentials: true });
+        const response = await axios.get('https://good-guys.netlify.app/.netlify/functions/userInfo', { withCredentials: true });
         setProfileData(response.data);
         console.log('Perfil obtenido:', response.data);
       } catch (error) {
