@@ -11,15 +11,36 @@ exports.handler = async (event, context) => {
         await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
         // Extract and validate the token
-        const cookies = event.headers.cookie; // Get cookies from the headers
-        const token = cookies
-            .split(';')
-            .find(cookie => cookie.trim().startsWith('access-token='))
-            .split('=')[1]; // Extract the access-token
+        const cookies = event.headers.cookie;
+        if (!cookies) {
+            console.error('No cookies found in headers');
+            return {
+                statusCode: 401,
+                body: JSON.stringify({ error: 'No cookies found' }),
+            };
+        }
+
+        const tokenCookie = cookies.split(';').find(cookie => cookie.trim().startsWith('access-token='));
+        if (!tokenCookie) {
+            console.error('No access-token cookie found');
+            return {
+                statusCode: 401,
+                body: JSON.stringify({ error: 'No access-token cookie found' }),
+            };
+        }
+
+        const token = tokenCookie.split('=')[1];
+        if (!token) {
+            console.error('Access token is empty');
+            return {
+                statusCode: 401,
+                body: JSON.stringify({ error: 'Access token is empty' }),
+            };
+        }
 
         const user = await validateToken(token);
-
         if (!user) {
+            console.error('Invalid token');
             return {
                 statusCode: 401,
                 body: JSON.stringify({ error: 'Usuario no autenticado' }),
@@ -28,8 +49,8 @@ exports.handler = async (event, context) => {
 
         // Find the account in the database
         const account = await accounts.findOne({ user: user.user });
-        
         if (!account) {
+            console.error('Usuario no encontrado');
             return {
                 statusCode: 401,
                 body: JSON.stringify({ error: 'Usuario no encontrado' }),
