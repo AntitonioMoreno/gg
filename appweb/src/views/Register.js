@@ -4,38 +4,27 @@ import { accountCollection } from '../model/collections';
 import MainNabvar from "../components/navbars/MainNavbar";
 import 'boxicons';
 import { useNavigate } from 'react-router-dom';
+import netlifyIdentity from 'netlify-identity-widget';
+netlifyIdentity.init();
+
 
 const Register = () => {
     const [account, setAccount] = useState({ ...accountCollection });
-    const [passwordsMatch, setPasswordsMatch] = useState(true);
     const navigate = useNavigate();
 
     const handleChangeAccount = (e) => {
         const { name, value } = e.target;
-        setAccount(prevState => {
-            const newState = { ...prevState, [name]: value };
-
-            // Comparar los valores de 'password' y 'firstPassword'
-            if (newState.password && newState.firstPassword) {
-                setPasswordsMatch(newState.password === newState.firstPassword);
-            }
-            return newState;
-        });
         setAccount(prevState => ({ ...prevState, [name]: value }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            if (!passwordsMatch) {
-                alert('no se ha confirmado la contraseña!');
-            }
-            else {
-                await axios.post('https://good-guys.netlify.app/.netlify/functions/register', { ...account });
-                alert('cuenta agregada exitosamente');
-                setAccount({ ...account });
-                navigate('/login');
-            }
+            netlifyIdentity.signup({
+                email: account.email,
+                password: account.password,
+            }).then(user => console.log('User registered', user))
+                .catch(error => console.log('Rgistration error: ', error));
         } catch (error) {
             alert('Error al agregar usuario, el usuario o correo ya han sido registrados previamente');
         }
