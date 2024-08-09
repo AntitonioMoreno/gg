@@ -10,10 +10,20 @@ netlifyIdentity.init();
 
 const Register = () => {
     const [account, setAccount] = useState({ ...accountCollection });
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
     const navigate = useNavigate();
 
     const handleChangeAccount = (e) => {
         const { name, value } = e.target;
+        setAccount(prevState => {
+            const newState = { ...prevState, [name]: value };
+
+            // Comparar los valores de 'password' y 'firstPassword'
+            if (newState.password && newState.firstPassword) {
+                setPasswordsMatch(newState.password === newState.firstPassword);
+            }
+            return newState;
+        });
         setAccount(prevState => ({ ...prevState, [name]: value }));
     };
 
