@@ -26,27 +26,15 @@ const Register = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!passwordsMatch) {
-            alert('Passwords do not match!');
-            return;
-        }
-
-        try {
-            await netlifyIdentity.signup({
-                email: account.email,
-                password: account.password,
-            });
-
-            console.log('User registered successfully');
-            navigate('/login'); // Redirect to login page or any other page
-
-        } catch (error) {
-            console.error('Registration error: ', error);
-            alert('Error registering user. The user or email may already be registered.');
-        }
+    const handleSignup = () => {
+        netlifyIdentity.open('signup');  // This opens the signup modal
     };
+    
+    netlifyIdentity.on('signup', (user) => {
+        console.log('User registered:', user);
+        // Redirect the user after successful registration
+        navigate('/main');
+    });
 
     return (
         <main className='main-register'>
@@ -131,7 +119,7 @@ const Register = () => {
                         <a href='/login'><i className='bx bx-log-in-circle'></i></a>
                         <h4>iniciar sesion</h4>
                     </div>
-                    <button onClick={handleSubmit}>crear cuenta</button>
+                    <button onClick={handleSignup}>crear cuenta</button>
                     <a href='/main'>info</a>
                 </div>
             </section>
