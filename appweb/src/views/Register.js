@@ -4,6 +4,7 @@ import MainNabvar from "../components/navbars/MainNavbar";
 import 'boxicons';
 import { useNavigate } from 'react-router-dom';
 import { accountCollection } from '../model/collections';
+import GoTrue from 'gotrue-js';
 
 netlifyIdentity.init();
 
@@ -11,6 +12,12 @@ const Register = () => {
     const [account, setAccount] = useState({ ...accountCollection });
     const [passwordsMatch, setPasswordsMatch] = useState(true);
     const navigate = useNavigate();
+
+    auth = new GoTrue({
+        APIUrl: 'https://good-guys.netlify.app/.netlify/identity',
+        audience: '',
+        setCookie: false,
+    });
 
     const handleChangeAccount = (e) => {
         const { name, value } = e.target;
@@ -27,9 +34,12 @@ const Register = () => {
     };
 
     const handleSignup = () => {
-        netlifyIdentity.open('signup');  // This opens the signup modal
+        auth
+            .signup(account.email, account.password)
+            .then((response) => console.log('Confirmation email sent', response))
+            .catch((error) => console.log("It's an error", error));
     };
-    
+
     netlifyIdentity.on('signup', (user) => {
         console.log('User registered:', user);
         // Redirect the user after successful registration
@@ -48,58 +58,58 @@ const Register = () => {
                 </div>
                 <div className='inputs-item'>
                     <h3>nombre</h3>
-                    <input 
-                        type='text' 
-                        required 
-                        name='name' 
-                        value={account.name} 
+                    <input
+                        type='text'
+                        required
+                        name='name'
+                        value={account.name}
                         onChange={handleChangeAccount}
-                        placeholder='introduzca su nombre' 
-                        className='border-gradient-purple' 
+                        placeholder='introduzca su nombre'
+                        className='border-gradient-purple'
                     />
                     <h3>apellido</h3>
-                    <input 
-                        type='text' 
-                        required 
-                        name='lastName' 
-                        value={account.lastName} 
+                    <input
+                        type='text'
+                        required
+                        name='lastName'
+                        value={account.lastName}
                         onChange={handleChangeAccount}
-                        placeholder='introduzca su apellido' 
+                        placeholder='introduzca su apellido'
                     />
                     <h3>email</h3>
-                    <input 
-                        type='email' 
-                        required 
-                        name='email' 
-                        value={account.email} 
+                    <input
+                        type='email'
+                        required
+                        name='email'
+                        value={account.email}
                         onChange={handleChangeAccount}
-                        placeholder='introduzca su correo electronico' 
+                        placeholder='introduzca su correo electronico'
                     />
                     <h3>nombre de usuario</h3>
-                    <input 
-                        type='text' 
-                        required 
-                        name='user' 
-                        value={account.user} 
+                    <input
+                        type='text'
+                        required
+                        name='user'
+                        value={account.user}
                         onChange={handleChangeAccount}
-                        placeholder='introduzca su nombre de usuario' 
+                        placeholder='introduzca su nombre de usuario'
                     />
                     <h3>crear contraseña</h3>
-                    <input 
-                        type='password' 
-                        required 
+                    <input
+                        type='password'
+                        required
                         name='firstPassword'
-                        placeholder='introduzca contraseña' 
-                        onChange={handleChangeAccount} 
+                        placeholder='introduzca contraseña'
+                        onChange={handleChangeAccount}
                     />
                     <h3>confirmar contraseña</h3>
-                    <input 
-                        type='password' 
-                        required 
-                        name='password' 
-                        value={account.password} 
+                    <input
+                        type='password'
+                        required
+                        name='password'
+                        value={account.password}
                         onChange={handleChangeAccount}
-                        placeholder='introduzca contraseña' 
+                        placeholder='introduzca contraseña'
                     />
                     {!passwordsMatch && <h4 style={{ color: 'red', zIndex: 3 }}>la contraseña no coincide</h4>}
                 </div>
